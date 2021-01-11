@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/*
+    Syntax:
+
+    element {
+        property: waarde;
+    }
+
+    selector class: .
+    selector id: #
+    _________________________
+    initial: zet default waarde van property terug
+    inherit: overerft property van parent
+
+    margin = ruimte om de border
+    padding = ruimte binnen de border
+
+    overflow specificeert wat er moet gebeuren als content groter is dan het element: scrollbar of knippen
+    werkt alleen voor block-elementen met een specifieke hoogte
+        * visible: standaard, niet geknipt of verborgen
+        * hidden: geknipt en verborgen
+        * scroll: geknipt, met scrollbar
+*/
+
+body {
+    font-family: 'Roboto', 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: white;
+    margin: 0;
+    background: #232323;
+}
+
+.flex-container {
+    display: flex; /*De flexcontainer wordt flexibel door display: flex*/
+    flex-direction: column; /*elementen onder elkaar*/
+    justify-content: center; /*normaal horizontaal centreren, nu verticaal ivm flex-direction column*/
+    align-items: center;  /*normaal verticaal centreren, nu horizontaal ivm flex-direction column*/
+}
+
+main {
+    width: 90%;
+    text-align: center;
+}
+
+h2 { /*default aangepast ivm margin*/
+    margin: 0;
+    font-weight: normal; /*standaard bold*/
+    width: 100%; /*trekt element over totale breedte parent om tekst te centreren*/
+}
+
+header {
+    height: 50px;
+    width: 100%;
+    display: flex; /*De flexcontainer wordt flexibel door display: flex*/
+    align-items: center; /*verticaal centreren van items*/
+    text-align: center;
+}
+
+/*banner*/
+.banner img {
+    width: 100%;
+}
+
+/*parallax effect*/
+.parallax-window {
+    min-height: 420px;
+    background: transparent;
+}
+
+/*welcome*/
+.welcome-container {
+    display: flex; /*De flexcontainer wordt flexibel door display: flex*/
+    flex-direction: column; /*elementen onder elkaar zetten*/
+    justify-content: center; /*normaal horizontaal centreren, nu verticaal ivm flex-direction column*/
+    align-items: center;  /*normaal verticaal centreren, nu horizontaal ivm flex-direction column*/
+}
+
+.welcome-container .content {
+    max-width: 45%;
+}
+
+/*tabs*/
+.tab-container {
+    display: flex; /*De flexcontainer wordt flexibel door display: flex*/
+    justify-content: center; /*elementen horizontaal centreren*/
+}
+
+.tab {
+    height: 400px;
+    width: 30%;
+    margin: 10px;
+}
+
+
+/*tab banner*/
+.tab-container .banner {
+    height: 190px; /*gelijk afsnijden imgs in banner tab*/
+}
+
+/*zoom img tab on hover
+
+To create transition effect, specify:
+
+1. CSS property to add effect to: transition-property Property
+2. Duration of the effect
+
+CSS transition-property Property >> defines comma separated list of CSS property names the transition effect is for.
+(De property defineert de naam van de CSS property waar het transitieeffect op moet plaatsvinden.)
+
+Parent moet overflow: hidden hebben om te voorkomen dat img buiten container gaat tijdens zoom
+
+transition property bevat het smooth-zoom effect
+
+Inzoomen: transform: scale() op de img:hover
+*/
+
+.tab .banner img{
+    transition: transform .4s ease-in-out;
+}
+
+.tab:hover .banner img{
+    transition: transform .4s ease-in-out;
+    transform: scale(1.5); /* Animatie scale(): vergroot of verkleint element: 150% zoom*/
+}
+
+
+/*tab- en card vormgeving*/
+.card-container .banner,
+.tab-container .banner {
+    overflow: hidden; /*geknipt en verborgen*/
+    border-top: 2px solid #232323;
+    border-bottom: 2px solid #232323;
+}
+
+.tab,
+.card {
+    overflow: hidden; /*geknipt en verborgen*/
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); /*1e px niet nodig doordat waarde 0 is*/
+}
+
+.tab-container .windsurfing,
+.card-container .windsurfing {
+    background-color: #f4db33;
+}
+
+.tab-container .mountainclimbing,
+.card-container .mountainclimbing {
+    background-color: #972ff8;
+}
+
+.tab-container .snorkeling,
+.card-container .snorkeling{
+    background-color: #dc3c84;
+}
+
+/*card vormgeving*/
+.card-container {
+    position: absolute; /*laten staan*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*translate() verplaats element van huidige positie (volgens de parameters d voor de X-as en de Y-as)*/
+}
+
+.card {
+    width: 70%;
+}
+
+.card-container .banner {
+    height: 250px; /*gelijk afsnijden imgs in banner tab*/
+}
+
+
+/*keyframes / animaties*/
+/*in-zoom-animatie cards*/
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3); /*inzoomeffect van een derde tot vol*/
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.card {
+    animation-name: zoomIn;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+/*buttons*/
+.goback-button{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center; /*verticaal centreren van items*/
+    justify-content: center; /*horizontaal centreren van items*/
+    cursor: pointer;
+}
+
+.goback-button img{
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+}
+
